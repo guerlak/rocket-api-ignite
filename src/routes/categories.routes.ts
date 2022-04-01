@@ -1,29 +1,27 @@
 import {Router} from "express";
-import {Category} from "../model/Category";
-import {CategoryRepo} from "../repository/CategoryRepo";
+import { CategoryRepo } from "../repository/CategoryRepo";
+import { CreateCategoryService } from "../services/CreateCategoryService";
 
 const categoriesRoute = Router();
+const categoryRepo = new CategoryRepo();
 
-const repo = new CategoryRepo();
 
 categoriesRoute.post("/categories", (req, res) => {
     
     const {name, description} = req.body;
 
-    const category: Category = new Category(name, description);
 
-    if(repo.findByName(category.name)){
-        return res.status(403).json({ok: "category exists"})
-    }
+    const createCatService = new CreateCategoryService(categoryRepo);
 
-    repo.create(category);
-
+    createCatService.execute({name,description});
+  
     return res.status(201).json({ok: "category inserted"})
 
 
 })
+
 categoriesRoute.get("/categories", (req, res) => {
-    return res.status(201).json(repo.list())
+    return res.status(201).json(categoryRepo.list())
 })
 
 export {categoriesRoute}

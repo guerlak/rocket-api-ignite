@@ -1,5 +1,10 @@
 import {Category} from "../model/Category"
 
+interface ICategoryDTO{
+    name: string,
+    description: string,
+}
+
 class CategoryRepo{
 
     private categories: Category[];
@@ -12,7 +17,8 @@ class CategoryRepo{
         return this.categories;
     }
 
-    create(category: Category){
+    create({name, description}: ICategoryDTO): void{
+        const category = new Category(name, description);
         this.categories.push(category);
     }
 
