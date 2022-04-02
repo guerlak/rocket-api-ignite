@@ -9,15 +9,12 @@ const categoryRepo = new CategoryRepo();
 categoriesRoute.post("/categories", (req, res) => {
     
     const {name, description} = req.body;
-
-
     const createCatService = new CreateCategoryService(categoryRepo);
 
     createCatService.execute({name,description});
   
+    
     return res.status(201).json({ok: "category inserted"})
-
-
 })
 
 categoriesRoute.get("/categories", (req, res) => {

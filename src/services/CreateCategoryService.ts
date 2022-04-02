@@ -1,4 +1,5 @@
 import {CategoryRepo} from "../repository/CategoryRepo";
+import {ICategoryRepo} from "../repository/ICategoryRepo";
 
 interface IRequest{
     name: string,
@@ -7,9 +8,9 @@ interface IRequest{
 
 class CreateCategoryService{
 
-    private categoryRepo: CategoryRepo;
+    private categoryRepo: ICategoryRepo;
 
-    constructor(repo: CategoryRepo){
+    constructor(repo: ICategoryRepo){
         this.categoryRepo = repo;
     }
 

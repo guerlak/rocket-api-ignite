@@ -1,6 +1,6 @@
 import {Category} from "../model/Category"
 
-interface ICategoryDTO{
+export interface ICategoryDTO{
     name: string,
     description: string,
 }
@@ -13,7 +13,7 @@ class CategoryRepo{
         this.categories = [];
     }
 
-    list(){
+    list(): Category[]{
         return this.categories;
     }
 
