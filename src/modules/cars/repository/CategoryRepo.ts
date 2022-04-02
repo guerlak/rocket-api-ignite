@@ -1,11 +1,12 @@
 import {Category} from "../model/Category"
+import { ICategoryRepo } from "./ICategoryRepo";
 
 export interface ICategoryDTO{
     name: string,
     description: string,
 }
 
-class CategoryRepo{
+class CategoryRepo implements ICategoryRepo{
 
     private categories: Category[];
 

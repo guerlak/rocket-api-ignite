@@ -1,4 +1,3 @@
-import {CategoryRepo} from "../repository/CategoryRepo";
 import {ICategoryRepo} from "../repository/ICategoryRepo";
 
 interface IRequest{
@@ -6,21 +5,21 @@ interface IRequest{
     description: string
 }
 
-class CreateCategoryService{
+class CreateSpecificationService{
 
-    private categoryRepo: ICategoryRepo;
+    private specificationRepo: ICategoryRepo;
 
     constructor(repo: ICategoryRepo){
-        this.categoryRepo = repo;
+        this.specificationRepo = repo;
     }
 
     execute({name, description}: IRequest): void {
-        if(this.categoryRepo.findByName(name)){
+        if(this.specificationRepo.findByName(name)){
             throw new Error("Category already exists");
         }
-        this.categoryRepo.create({name, description});
+        this.specificationRepo.create({name, description});
     }
 
 }
 
-export {CreateCategoryService}
+export {CreateSpecificationService}
