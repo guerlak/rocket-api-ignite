@@ -1,24 +1,21 @@
 import {Router} from "express";
-import { CategoryRepo } from "../modules/cars/repository/CategoryRepo";
-import { CreateCategoryService } from "../modules/cars/services/CreateCategoryService";
+import { SpecificationRepo } from "../modules/cars/repository/SpecificatonRepo";
+import { CreateSpecificationService } from "../modules/cars/services/CreateSpecificationService";
 
-const categoriesRoute = Router();
-const categoryRepo = new CategoryRepo();
+const specificationsRoute = Router();
+const specificationRepo = new SpecificationRepo();
 
 
-categoriesRoute.post("/categories", (req, res) => {
-    
+specificationsRoute.post("/specification", (req, res) => {
     const {name, description} = req.body;
-    const createCatService = new CreateCategoryService(categoryRepo);
+    const createCatService = new CreateSpecificationService(specificationRepo);
 
     createCatService.execute({name,description});
-  
-    
     return res.status(201).json({ok: "category inserted"})
 })
 
-categoriesRoute.get("/categories", (req, res) => {
-    return res.status(201).json(categoryRepo.list())
+specificationsRoute.get("/specification", (req, res) => {
+    return res.status(201).json(specificationRepo.list())
 })
 
-export {categoriesRoute}
+export {specificationsRoute}
